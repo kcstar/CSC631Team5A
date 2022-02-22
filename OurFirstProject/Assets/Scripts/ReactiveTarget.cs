@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ReactiveTarget : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ReactToHit()
     {
-        
+        StartCoroutine(Die());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator Die()
     {
-        
+        this.transform.Rotate(-90, 0, 0);
+        this.transform.Translate(0, -0.5f, 0, Space.World);
+        yield return new WaitForSeconds(1.5f);
+        Destroy(this.gameObject);
     }
 }
