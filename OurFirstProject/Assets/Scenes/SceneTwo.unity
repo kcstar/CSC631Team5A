@@ -383,12 +383,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Press G to switch Scenes
+  m_Text: 'Press G to switch Levels
 
-    Press F to change background
+    Press F to change Wall Color
 
     Press
-    E to spin'
+    E to backflip'
 --- !u!222 &239137128
 CanvasRenderer:
   m_ObjectHideFlags: 0
