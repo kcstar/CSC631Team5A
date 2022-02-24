@@ -42,7 +42,6 @@ public class FireProjectile : MonoBehaviour
             UpdateDirection();
 
             vfx = Instantiate(effectToSpawn, firePoint.transform.position, rotation);
-            //vfx.transform.rotation = firePoint.transform.rotation;
             vfx.GetComponent<ProjectileMove>().owner = gameObject;
             vfx.SetActive(true);
         } else
@@ -60,12 +59,12 @@ public class FireProjectile : MonoBehaviour
             rayMouse = cam.ScreenPointToRay(mousePos);
             if (Physics.Raycast(rayMouse.origin, rayMouse.direction, out hit, maximumLength))
             {
-                UpdateMouseDirection(gameObject, hit.point);
+                UpdateMouseDirection(firePoint, hit.point);
             }
             else
             {
                 var pos = rayMouse.GetPoint(maximumLength);
-                UpdateMouseDirection(gameObject, pos);
+                UpdateMouseDirection(firePoint, pos);
             }
         }
         else
