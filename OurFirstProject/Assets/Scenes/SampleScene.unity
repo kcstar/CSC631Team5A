@@ -1751,12 +1751,9 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Press G to change levels
-
     Press C to change views
-
     Press F to
     change colors
-
     Press E to backflip!'
 --- !u!222 &1781224820
 CanvasRenderer:
