@@ -16,11 +16,12 @@ public class changeColor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             MeshRenderer[] children = GetComponentsInChildren<MeshRenderer>();
-            foreach(MeshRenderer renderer in children) {
-                if (renderer.material.GetColor("_Color").Equals(Color.red)) {
-                    renderer.material.SetColor("_Color", Color.green);
+            foreach(MeshRenderer renderer in children)
+            {
+                if (renderer.material.GetColor("_BaseColor").Equals(Color.red)) {
+                    renderer.material.SetColor("_BaseColor", Color.green);
                 } else {
-                    renderer.material.SetColor("_Color", Color.red);
+                    renderer.material.SetColor("_BaseColor", Color.red);
                 }
             }
         }
