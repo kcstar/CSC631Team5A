@@ -10,7 +10,6 @@ import java.io.IOException;
  * read it.
  */
 public class DataReader {
-
     /**
      * Read a single short from the input stream. Used for Python client
      * PyDatagram decoding.
@@ -23,6 +22,7 @@ public class DataReader {
         if (in.available() > 0) {
             return Short.reverseBytes(in.readShort());
         }
+
         return -1;
     }
 
@@ -38,6 +38,7 @@ public class DataReader {
         if (in.available() > 0) {
             return Integer.reverseBytes(in.readInt());
         }
+
         return -1;
     }
 
@@ -53,6 +54,7 @@ public class DataReader {
         if (in.available() > 0) {
             return in.readBoolean();
         }
+
         return false;
     }
 

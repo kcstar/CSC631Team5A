@@ -9,8 +9,7 @@ import networking.response.ResponseLeave;
 import core.NetworkManager;
 
 public class RequestLeave extends GameRequest {
-    // Responses
-    private ResponseLeave responseLeave;
+    private ResponseLeave responseLeave; // Responses
 
     public RequestLeave() {
         responses.add(responseLeave = new ResponseLeave());
@@ -18,7 +17,7 @@ public class RequestLeave extends GameRequest {
 
     @Override
     public void parse() throws IOException {
-    
+        // Parsing is not necessary for this request
     }
 
     @Override
@@ -26,7 +25,6 @@ public class RequestLeave extends GameRequest {
         Player player = client.getPlayer();
 
         responseLeave.setPlayer(player);
-
         NetworkManager.addResponseForAllOnlinePlayers(player.getID(), responseLeave);
     }
 }

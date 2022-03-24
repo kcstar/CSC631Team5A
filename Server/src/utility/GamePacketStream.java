@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
  * bytes into the output stream. Data is then sent to the client.
  */
 public class GamePacketStream extends ByteArrayOutputStream {
-
     GamePacketStream(short message_id) {
         // Reserve the first two bytes for the packet length
         super.write(0xff);
@@ -80,7 +79,6 @@ public class GamePacketStream extends ByteArrayOutputStream {
             bytes[5] = (byte) (int_val >> 40);
             bytes[6] = (byte) (int_val >> 48);
             bytes[7] = (byte) (int_val >> 56);
-
 
             super.write(bytes);
         } catch (IOException e) {

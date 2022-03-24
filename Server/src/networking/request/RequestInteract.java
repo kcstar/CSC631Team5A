@@ -11,8 +11,7 @@ import core.NetworkManager;
 
 public class RequestInteract extends GameRequest {
     private int pieceIndex, targetIndex;
-    // Responses
-    private ResponseInteract responseInteract;
+    private ResponseInteract responseInteract; // Responses
 
     public RequestInteract() {
         responses.add(responseInteract = new ResponseInteract());

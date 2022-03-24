@@ -28,7 +28,6 @@ import utility.Log;
  * lasts as long as the connection is alive.
  */
 public class GameClient implements Runnable {
-
     // Client Variables
     private String session_id;
     private Socket clientSocket;
@@ -37,6 +36,7 @@ public class GameClient implements Runnable {
     private DataInputStream dataInputStream; // Stores incoming requests for use
     private boolean isDone;
     private Queue<GameResponse> updates; // Temporarily store responses for client
+
     // Other Variables
     private Player player;
 
@@ -79,23 +79,22 @@ public class GameClient implements Runnable {
 
                 if (requestLength > 0) {
                     lastActivity = System.currentTimeMillis();
+
                     // Separate the remaining package from the data stream
                     byte[] buffer = new byte[requestLength];
                     inputStream.read(buffer, 0, requestLength);
                     DataInputStream dataInput = new DataInputStream(new ByteArrayInputStream(buffer));
-                    // Extract the request code number
-                    requestCode = DataReader.readShort(dataInput);
-                    // Determine the type of request
-                    GameRequest request = GameRequestTable.get(requestCode);
+
+                    requestCode = DataReader.readShort(dataInput); // Extract the request code number
+                    GameRequest request = GameRequestTable.get(requestCode); // Determine the type of request
+
                     // If the request exists, process like following:
                     if (request != null) {
                         request.setGameClient(this);
-                        // Pass input stream to the request object
-                        request.setDataInputStream(dataInput);
-                        // Parse the input stream
-                        request.parse();
-                        // Interpret the data
-                        request.doBusiness();
+                        request.setDataInputStream(dataInput); // Pass input stream to the request object
+                        request.parse(); // Parse the input stream
+                        request.doBusiness(); // Interpret the data
+
                         try {
                             // Retrieve any responses created by the request object
                             for (GameResponse response : request.getResponses()) {
@@ -127,7 +126,6 @@ public class GameClient implements Runnable {
 
         // Remove this GameClient from the server
         GameServer.getInstance().deletePlayerThreadOutOfActiveThreads(session_id);
-
         Log.printf("Client %s has ended", session_id);
     }
 
@@ -224,7 +222,6 @@ public class GameClient implements Runnable {
         }
 
         str += "-----";
-
         return str;
     }
 }

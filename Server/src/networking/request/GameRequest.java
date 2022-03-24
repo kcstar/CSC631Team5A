@@ -16,7 +16,6 @@ import networking.response.GameResponse;
  * request information.
  */
 public abstract class GameRequest {
-
     protected GameClient client;
     protected DataInputStream dataInput;
     protected List<GameResponse> responses;

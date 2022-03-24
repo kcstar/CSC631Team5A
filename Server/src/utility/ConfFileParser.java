@@ -15,7 +15,6 @@ import java.util.StringTokenizer;
  * configuration variables.
  */
 public class ConfFileParser {
-
     private String fileName;
     private FileInputStream fis;
     private BufferedReader bur;
@@ -58,17 +57,20 @@ public class ConfFileParser {
 
         try {
             while ((str = bur.readLine()) != null) {
-                // Delete spaces at the beginning and end
-                str = str.trim();
+                str = str.trim(); // Delete spaces at the beginning and end
+
                 // If the line has no content or starts with "#", then go to the next line
                 if (str.length() == 0 || str.charAt(0) == '#') {
                     continue;
                 }
-                // Tokenize the string and parse for variables
+
                 st = new StringTokenizer(str);
                 int i = 0;
+
+                // Tokenize the string and parse for variables
                 while (st.hasMoreTokens()) {
                     i++;
+
                     if (i == 1) {
                         key = st.nextToken();
                     } else if (i == 2) {
@@ -77,6 +79,7 @@ public class ConfFileParser {
                         System.out.println("[In ConfFileParser.java]---There are more than 2 parts in a line in file: " + fileName + ", please check.");
                     }
                 }
+
                 records.put(key, value);
             }
         } catch (IOException ex) {

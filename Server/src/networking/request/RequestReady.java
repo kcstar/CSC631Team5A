@@ -9,9 +9,7 @@ import networking.response.ResponseReady;
 import core.NetworkManager;
 
 public class RequestReady extends GameRequest {
-
-    // Responses
-    private ResponseReady responseReady;
+    private ResponseReady responseReady; // Responses
 
     public RequestReady() {
         responses.add(responseReady = new ResponseReady());
@@ -19,7 +17,7 @@ public class RequestReady extends GameRequest {
 
     @Override
     public void parse() throws IOException {
-    
+        // Parsing is not necessary for this request
     }
 
     @Override
@@ -27,7 +25,6 @@ public class RequestReady extends GameRequest {
         Player player = client.getPlayer();
 
         responseReady.setPlayer(player);
-
         NetworkManager.addResponseForAllOnlinePlayers(player.getID(), responseReady);
     }
 }

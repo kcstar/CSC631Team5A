@@ -13,7 +13,6 @@ import utility.Log;
  * with its corresponding request class.
  */
 public class GameRequestTable {
-
     private static Map<Short, Class> requestTable = new HashMap<Short, Class>(); // Request Code -> Class
 
     /**

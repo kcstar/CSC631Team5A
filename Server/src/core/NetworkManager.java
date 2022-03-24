@@ -6,10 +6,6 @@ import networking.response.GameResponse;
 import utility.Log;
 
 public class NetworkManager {
-
-    private NetworkManager() {
-    }
-
     /**
      * Push a pending response to a user's queue.
      *

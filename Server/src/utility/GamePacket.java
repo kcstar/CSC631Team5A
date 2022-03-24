@@ -21,7 +21,6 @@ package utility;
  *      byte[5] = Hi of Result = 0x00
  */
 public class GamePacket {
-
     private GamePacketStream buf;
 
     public GamePacket(short responseCode) {

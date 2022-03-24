@@ -7,6 +7,7 @@ import model.Player;
 import utility.GamePacket;
 import utility.Log;
 import java.util.List;
+
 /**
  * The ResponseLogin class contains information about the authentication
  * process.
@@ -26,9 +27,10 @@ public class ResponseLeave extends GameResponse {
         GameServer gs = GameServer.getInstance();
         List<Player> activePlayers = gs.getActivePlayers(); 
       
-        for(Player p : activePlayers) {
-            if(p.getID() == player.getID()) 
-                gs.removeActivePlayer(p.getID()); 
+        for (Player p : activePlayers) {
+            if (p.getID() == player.getID()) {
+                gs.removeActivePlayer(p.getID());
+            }
         }
 
         Log.printf("Player with id %d has left.", player.getID());

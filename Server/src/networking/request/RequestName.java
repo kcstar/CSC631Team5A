@@ -10,11 +10,8 @@ import utility.DataReader;
 import core.NetworkManager;
 
 public class RequestName extends GameRequest {
-    // Data
-    private String name;
-
-    // Responses
-    private ResponseName responseName;
+    private String name; // Data
+    private ResponseName responseName; // Responses
 
     public RequestName() {
         responses.add(responseName = new ResponseName());
@@ -31,7 +28,6 @@ public class RequestName extends GameRequest {
        
         player.setName(name);
         responseName.setPlayer(player);
-
         NetworkManager.addResponseForAllOnlinePlayers(player.getID(), responseName);
     }
 }

@@ -5,6 +5,7 @@ import metadata.Constants;
 import model.Player;
 import utility.GamePacket;
 import utility.Log;
+
 /**
  * The ResponseLogin class contains information about the authentication
  * process.

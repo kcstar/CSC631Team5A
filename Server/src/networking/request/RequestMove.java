@@ -11,8 +11,7 @@ import core.NetworkManager;
 
 public class RequestMove extends GameRequest {
     private int pieceIndex, x, y;
-    // Responses
-    private ResponseMove responseMove;
+    private ResponseMove responseMove; // Responses
 
     public RequestMove() {
         responses.add(responseMove = new ResponseMove());

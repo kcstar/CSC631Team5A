@@ -17,11 +17,8 @@ import utility.Log;
  */
 
 public class RequestJoin extends GameRequest {
-    // Data
-    private Player player;
-
-    // Responses
-    private ResponseJoin responseJoin;
+    private Player player; // Data
+    private ResponseJoin responseJoin; // Responses
 
     public RequestJoin() {
         responses.add(responseJoin = new ResponseJoin());
@@ -29,21 +26,22 @@ public class RequestJoin extends GameRequest {
 
     @Override
     public void parse() throws IOException {
-        //no parsing for this request
+        // Parsing is not necessary for this request
     }
 
     @Override
     public void doBusiness() throws Exception {
         GameServer gs = GameServer.getInstance();
         int id = gs.getID();
-        if(id != 0) {
+
+        if (id != 0) {
             player = new Player(id, "Player " + id);
+
             player.setID(id);
             gs.setActivePlayer(player);
-
             player.setClient(client);
-            // Pass Player reference into thread
-            client.setPlayer(player);
+            client.setPlayer(player); // Pass Player reference into thread
+
             // Set response information
             responseJoin.setStatus((short) 0); // Login is a success
             responseJoin.setPlayer(player);

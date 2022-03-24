@@ -5,6 +5,7 @@ import metadata.Constants;
 import model.Player;
 import utility.GamePacket;
 import utility.Log;
+
 /**
  * The ResponseLogin class contains information about the authentication
  * process.
@@ -24,7 +25,6 @@ public class ResponseInteract extends GameResponse {
         packet.addInt32(player.getID());
         packet.addInt32(index);
         packet.addInt32(targetIndex);
-
 
         Log.printf("Player with id %d has had a piece at index %d interact with another player's piece at index %d.", player.getID(), index, targetIndex);
  

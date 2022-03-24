@@ -12,12 +12,9 @@ import utility.Log;
  * the client. Also used to keep the connection alive.
  */
 public class RequestHeartbeat extends GameRequest {
-
-    public RequestHeartbeat() {
-    }
-
     @Override
     public void parse() throws IOException {
+        // Parsing is not necessary for this request
     }
 
     @Override

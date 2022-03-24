@@ -4,7 +4,6 @@ package core;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.ServerSocket;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,45 +27,38 @@ import utility.Log;
  * stored here to perform other specific needs.
  */
 public class GameServer {
+    private static GameServer gameServer; // Singleton Instance
 
-    // Singleton Instance
-    private static GameServer gameServer;
     // Server Variables
-    private boolean isDone; // Server Loop Flag
     private GameServerConf configuration; // Stores server config. variables
     private ServerSocket serverSocket;
     private ExecutorService clientThreadPool;
+
     // Reference Tables
     private Map<String, GameClient> activeThreads = new HashMap<String, GameClient>(); // Session ID -> Client
     private Map<Integer, Player> activePlayers = new HashMap<Integer, Player>(); // Player ID -> Player
 
-    private boolean[] occupied = new boolean[2]; 
+    private boolean[] occupied = new boolean[2];
+
     /**
      * Create the GameServer by setting up the request types and creating a
      * connection with the database.
      */
     public GameServer() {
-        // Load configuration file
-        configure();
+        configure(); // Load configuration file
+
         // Initialize tables for global use
         GameRequestTable.init(); // Contains request codes and classes
-        // Initialize database connection
-        // I am commenting out the below DAO as it is game specific.
-        /*
-        if (DAO.getInstance() == null) {
-            Log.println_e("Database Connection Failed!");
-            System.exit(-1);
-        }*/
-        // Preload world-related objects
-        initialize();
-        // Thread Pool for Clients
-        clientThreadPool = Executors.newCachedThreadPool();
+
+        initialize(); // Preload world-related objects
+        clientThreadPool = Executors.newCachedThreadPool(); // Thread Pool for Clients
     }
 
     public static GameServer getInstance() {
         if (gameServer == null) {
             gameServer = new GameServer();
         }
+
         return gameServer;
     }
 
@@ -83,13 +75,8 @@ public class GameServer {
      * Initialize the GameServer by loading a few things into memory.
      */
     public final void initialize() {
-        //setupSpeciesTypes();
         //Do what is needed for your game
     }
-
-    /**
-     * Retrieve species from the database and load data into memory.
-     */
 
     /**
      * Run the game server by waiting for incoming connection requests.
@@ -102,19 +89,20 @@ public class GameServer {
             serverSocket = new ServerSocket(configuration.getPortNumber());
             Log.printf("Server has started on port: %d", serverSocket.getLocalPort());
             Log.println("Waiting for clients...");
+
             // Loop indefinitely to establish multiple connections
-            while (!isDone) {
+            while (true) {
                 try {
                     // Accept the incoming connection from client
                     Socket clientSocket = serverSocket.accept();
                     Log.printf("%s is connecting...", clientSocket.getInetAddress().getHostAddress());
+
                     // Create a runnable instance to represent a client that holds the client socket
                     String session_id = createUniqueID();
+
                     GameClient client = new GameClient(session_id, clientSocket);
-                    // Keep track of the new client thread
-                    addToActiveThreads(client);
-                    // Initiate the client
-                    clientThreadPool.submit(client);
+                    addToActiveThreads(client); // Keep track of the new client thread
+                    clientThreadPool.submit(client); // Initiate the client
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
@@ -172,18 +160,23 @@ public class GameServer {
     }
 
     public int getID() {
-        int id = 0;
-        int i = 0;
-        for(i = 0; i < 2; i++) {
+        int i = 0, id = 0;
+
+        while (i < 2) {
             if(!occupied[i]) {
-                id = i + 1; break;
+                id = i + 1;
+                break;
             }
+
+            i++;
         }
-        if(i != 2) {
+
+        if (i != 2) {
             occupied[i] = true;
             return id;
-        } else
+        } else {
             return 0;
+        }
     }
 
     /**

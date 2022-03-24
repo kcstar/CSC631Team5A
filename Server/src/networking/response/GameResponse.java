@@ -8,7 +8,6 @@ import java.lang.reflect.Field;
  * response information.
  */
 public abstract class GameResponse {
-
     protected byte[] responseInBytes; // Response information stored as bytes
     protected short responseCode;
 
@@ -36,7 +35,6 @@ public abstract class GameResponse {
         }
 
         str += "-----";
-
         return str;
     }
 }

@@ -50,7 +50,6 @@ public class Player {
     public void setReadyStatusOn(boolean status) {
         isReady = status;
     }
-    
 
     public GameClient setClient(GameClient client) {
         return this.client = client;

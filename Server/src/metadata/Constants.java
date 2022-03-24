@@ -6,8 +6,6 @@ package metadata;
 public class Constants {
     // Constants
 	final public static String CLIENT_VERSION = "1.00";
-	final public static String REMOTE_HOST = "localhost";
-    final public static int REMOTE_PORT = 9252;
     final public static int TIMEOUT_SECONDS = 3;
     
     // Request (1xx) + Response (2xx)

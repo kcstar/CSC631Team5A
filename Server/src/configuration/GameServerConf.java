@@ -9,7 +9,6 @@ import java.util.Map;
  * to be used for the server from the configuration file.
  */
 public class GameServerConf {
-
     private Map<String, String> confRecords; // Stores server config. variables
 
     public GameServerConf() {

@@ -9,7 +9,6 @@ import java.util.Date;
  * display them to the console.
  */
 public class Log {
-
     // Time-Related Variables
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static boolean displayTime = false;
